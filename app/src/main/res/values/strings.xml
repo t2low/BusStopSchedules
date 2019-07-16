@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BusTimeTable</string>
+    <string name="change_destination">行き先変更</string>
+</resources>
