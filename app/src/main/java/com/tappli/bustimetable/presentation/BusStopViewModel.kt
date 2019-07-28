@@ -16,7 +16,8 @@ class BusStopViewModel(application: Application) : AndroidViewModel(application)
     val busStopList: LiveData<List<BusStop>>
         get() = _busStopList
 
-    private var destination: Destination = Destination.ToAkitsu
+    var destination: Destination = Destination.ToAkitsu
+        private set
 
     init {
         setDestination(Destination.ToAkitsu)

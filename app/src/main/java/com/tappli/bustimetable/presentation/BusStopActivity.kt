@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.tappli.bustimetable.R
+import com.tappli.bustimetable.domain.BusStop
+import com.tappli.bustimetable.domain.Destination
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,7 +27,11 @@ class BusStopActivity : AppCompatActivity() {
         busStopListView.adapter = adapter
         viewModel = ViewModelProviders.of(this).get(BusStopViewModel::class.java)
         viewModel.busStopList.observe(this, Observer {
-            adapter.update(it.map { busStop -> BusStopItem(busStop) })
+            adapter.update(it.map { busStop ->
+                BusStopItem(busStop, viewModel.destination).apply {
+                    onClick = this@BusStopActivity::onClickBusStop
+                }
+            })
         })
     }
 
@@ -34,7 +40,7 @@ class BusStopActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.reverseDestination -> {
             viewModel.toggleDestination()
             true
@@ -42,6 +48,9 @@ class BusStopActivity : AppCompatActivity() {
         else -> {
             super.onOptionsItemSelected(item)
         }
+    }
 
+    private fun onClickBusStop(busStop: BusStop, destination: Destination) {
+        // TODO
     }
 }
