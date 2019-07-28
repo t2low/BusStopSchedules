@@ -51,6 +51,7 @@ class BusStopActivity : AppCompatActivity() {
     }
 
     private fun onClickBusStop(busStop: BusStop, destination: Destination) {
-        // TODO
+        val intent = BusScheduleActivity.createIntent(this, busStop, destination)
+        startActivity(intent)
     }
 }
