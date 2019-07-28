@@ -4,9 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProviders
 import com.tappli.bustimetable.R
 import com.tappli.bustimetable.domain.BusStop
+import com.tappli.bustimetable.domain.BusStopId
 import com.tappli.bustimetable.domain.Destination
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.activity_bus_schedule.*
 
 class BusScheduleActivity : AppCompatActivity() {
 
@@ -24,11 +29,21 @@ class BusScheduleActivity : AppCompatActivity() {
         Destination
     }
 
+
+    private lateinit var viewModel: BusScheduleViewModel
+    private val adapter = GroupAdapter<ViewHolder>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bus_schedule)
 
-        val busStopId = intent.getIntExtra(Parameter.BusStopId.name, 0)
+        val busStopId = BusStopId(intent.getIntExtra(Parameter.BusStopId.name, 0))
         val destination = intent.getSerializableExtra(Parameter.Destination.name) as Destination
+
+        busScheduleListView.adapter = adapter
+
+        viewModel = ViewModelProviders.of(this).get(BusScheduleViewModel::class.java)
+        val items = viewModel.getWeekdayBusSchedule(busStopId, destination).map { BusScheduleItem(it) }
+        adapter.update(items)
     }
 }
