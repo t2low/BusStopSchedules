@@ -43,7 +43,9 @@ class BusScheduleActivity : AppCompatActivity() {
         busScheduleListView.adapter = adapter
 
         viewModel = ViewModelProviders.of(this).get(BusScheduleViewModel::class.java)
-        val items = viewModel.getWeekdayBusSchedule(busStopId, destination).map { BusScheduleItem(it) }
+        val items = viewModel.getWeekdayBusSchedule(busStopId, destination)
+            .groupBy { it.hours }
+            .map { BusScheduleItem(it.value) }
         adapter.update(items)
     }
 }

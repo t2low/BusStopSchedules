@@ -13,8 +13,8 @@ class BusScheduleViewModel(application: Application) : AndroidViewModel(applicat
 
     fun getWeekdayBusSchedule(busStopId: BusStopId, destination: Destination): List<BusSchedule> {
         return when (destination) {
-            Destination.ToHigasimurayama -> busScheduleRepositoryImpl.weekdayInbound
-            Destination.ToAkitsu -> busScheduleRepositoryImpl.weekdayOutbound
+            Destination.ToHigasimurayama -> busScheduleRepositoryImpl.weekdayInbound.filter { it.busStopId == busStopId.value }
+            Destination.ToAkitsu -> busScheduleRepositoryImpl.weekdayOutbound.filter { it.busStopId == busStopId.value }
         }
     }
 }

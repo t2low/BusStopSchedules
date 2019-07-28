@@ -9,15 +9,31 @@
         android:layout_height="wrap_content">
 
     <TextView
-            android:id="@+id/busScheduleTextView"
+            android:id="@+id/scheduleHourTextView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:textSize="24sp"
-            tools:text="10:00"
+            android:gravity="end"
+            android:minWidth="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="8dp"
+            tools:text="10"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/scheduleMinutesTextView"
+            app:layout_constraintStart_toEndOf="@id/scheduleHourTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/scheduleHourTextView"
+            android:textSize="20sp"
+            tools:text="08 28 48"
+            android:textStyle="bold"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
