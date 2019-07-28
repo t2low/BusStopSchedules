@@ -29,4 +29,11 @@ class BusScheduleRepositoryImpl(private val context: Context) {
             }.filterNotNull()
         }
     }
+
+    val weekdaySchedules: List<BusSchedule> by lazy { busSchedules.filter { it.isWeekDay } }
+    val holidaySchedules: List<BusSchedule> by lazy { busSchedules.filter { !it.isWeekDay } }
+    val weekdayInbound: List<BusSchedule> by lazy { weekdaySchedules.filter { it.destination == Destination.ToHigasimurayama } }
+    val weekdayOutbound: List<BusSchedule> by lazy { weekdaySchedules.filter { it.destination == Destination.ToAkitsu } }
+    val holidayInbound: List<BusSchedule> by lazy { holidaySchedules.filter { it.destination == Destination.ToHigasimurayama } }
+    val holidayOutbound: List<BusSchedule> by lazy { holidaySchedules.filter { it.destination == Destination.ToAkitsu } }
 }
