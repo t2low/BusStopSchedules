@@ -13,14 +13,13 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 
-class BusStopActivity : AppCompatActivity() {
+class BusStopActivity : AppCompatActivity(R.layout.activity_main) {
 
     private lateinit var viewModel: BusStopViewModel
     private val adapter = GroupAdapter<ViewHolder>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolBar)
 

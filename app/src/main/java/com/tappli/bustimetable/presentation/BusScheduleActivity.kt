@@ -13,7 +13,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_bus_schedule.*
 
-class BusScheduleActivity : AppCompatActivity() {
+class BusScheduleActivity : AppCompatActivity(R.layout.activity_bus_schedule) {
 
     companion object {
         fun createIntent(context: Context, busStop: BusStop, destination: Destination): Intent {
@@ -35,7 +35,6 @@ class BusScheduleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bus_schedule)
 
         val busStopId = BusStopId(intent.getIntExtra(Parameter.BusStopId.name, 0))
         val destination = intent.getSerializableExtra(Parameter.Destination.name) as Destination
